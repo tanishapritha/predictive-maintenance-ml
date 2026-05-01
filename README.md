@@ -37,8 +37,8 @@ The machine learning pipeline is modularized into the following stages:
 |---|---|---|
 | Classification (Best Model) | Accuracy | ~0.98 |
 | Classification (Best Model) | F1 Score | ~0.85 |
-| Regression (RUL Model) | MAE | ~42.3 |
-| Regression (RUL Model) | RMSE | ~51.8 |
+| Regression (RUL Model) | MAE | 0.00389 |
+| Regression (RUL Model) | RMSE | 0.07780 |
 
 ## Setup and Run Instructions
 
