@@ -61,3 +61,16 @@ Launch the interactive Streamlit app:
 streamlit run app.py
 ```
 
+## Project Visualizations
+
+### Feature Correlation Heatmap
+![Correlation Heatmap](plots/eda_correlation.png)
+
+### Model Confusion Matrix
+![Confusion Matrix](plots/confusion_matrix.png)
+
+### Random Forest Feature Importance
+![Feature Importance](plots/feature_importance.png)
+
+### RUL Predictions (Predicted vs Actual)
+![RUL Predictions](plots/rul_predictions.png)
