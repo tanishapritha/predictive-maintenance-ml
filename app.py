@@ -65,11 +65,11 @@ except FileNotFoundError:
 # --- Sidebar Inputs ---
 st.sidebar.header("Machine Sensor Inputs")
 machine_type = st.sidebar.selectbox("Machine Type", options=['L', 'M', 'H'], index=0)
-air_temp = st.sidebar.number_input("Air temperature [K]", min_value=250.0, max_value=350.0, value=298.1)
-process_temp = st.sidebar.number_input("Process temperature [K]", min_value=250.0, max_value=350.0, value=308.6)
-rot_speed = st.sidebar.number_input("Rotational speed [rpm]", min_value=1000, max_value=3000, value=1551)
-torque = st.sidebar.number_input("Torque [Nm]", min_value=10.0, max_value=100.0, value=42.8)
-tool_wear = st.sidebar.number_input("Tool wear [min]", min_value=0, max_value=300, value=0)
+air_temp = st.sidebar.slider("Air temperature [K]", min_value=250.0, max_value=350.0, value=298.1)
+process_temp = st.sidebar.slider("Process temperature [K]", min_value=250.0, max_value=350.0, value=308.6)
+rot_speed = st.sidebar.slider("Rotational speed [rpm]", min_value=1000, max_value=3000, value=1551)
+torque = st.sidebar.slider("Torque [Nm]", min_value=10.0, max_value=100.0, value=42.8)
+tool_wear = st.sidebar.slider("Tool wear [min]", min_value=0, max_value=300, value=0)
 
 # Create input dataframe
 input_data = pd.DataFrame([{
@@ -113,9 +113,7 @@ failure_pred = classifier.predict(processed_input)[0]
 # Predict RUL
 rul_pred = rul_model.predict(processed_input)[0]
 
-# Calculate Health Score (0-100)
-# Inverse of failure probability, scaled to 100
-health_score = max(0, 100 - (failure_prob * 100))
+# Calculate Health Score (0-100) (Removed)
 
 # --- Dashboard Display ---
 
@@ -123,7 +121,7 @@ health_score = max(0, 100 - (failure_prob * 100))
 if failure_prob > 0.6:
     st.markdown('<div class="alert-danger">CRITICAL ALERT: High Probability of Machine Failure Detected!</div>', unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
     color = "#ff4b4b" if failure_pred == 1 else "#4CAF50"
@@ -142,16 +140,6 @@ with col2:
         <div class="metric-label">Estimated RUL</div>
         <div class="metric-value" style="color: #2196F3;">{rul_pred:.0f} mins</div>
         <div style="font-size: 14px; margin-top: 5px;">Remaining Useful Life</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    h_color = "#4CAF50" if health_score > 70 else "#ff9800" if health_score > 40 else "#ff4b4b"
-    st.markdown(f"""
-    <div class="metric-card">
-        <div class="metric-label">Overall Health Score</div>
-        <div class="metric-value" style="color: {h_color};">{health_score:.1f}/100</div>
-        <div style="font-size: 14px; margin-top: 5px;">Derived from sensor integrity</div>
     </div>
     """, unsafe_allow_html=True)
 
