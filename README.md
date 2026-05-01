@@ -1,5 +1,8 @@
 # Smart Predictive Maintenance System
 
+### Try out live!
+[https://tanishapritha-predictive-maintenance-ml-app-caonzt.streamlit.app/](https://tanishapritha-predictive-maintenance-ml-app-caonzt.streamlit.app/)
+
 ## Overview
 This project implements a production-quality predictive maintenance system using the UCI AI4I 2020 dataset. It features a complete end-to-end machine learning pipeline that includes binary classification for machine failure prediction and a regression model to estimate Remaining Useful Life (RUL), culminating in a real-time Streamlit dashboard for monitoring machine health.
 
